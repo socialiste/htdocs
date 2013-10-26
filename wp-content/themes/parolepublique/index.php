@@ -15,7 +15,7 @@ get_header(); ?>
 			<?php /* The loop */ ?>
 			<?php 
                         $i= 0;
-                        while ( have_posts() ) : the_post(); $i++; 
+                        while ( have_posts() && $i <= 3) : the_post(); $i++; 
                             if ($i==1) {?>
                             <div><h2>
                                     <a href="<?php echo get_permalink(); ?>"><?php the_title();?></h2></a>  <span class="author"><?php the_author_link();?> </span>
@@ -41,14 +41,15 @@ get_header(); ?>
                 <div> 
                     <div class="categorie">CULTURE</div>
 		<?php 
-                add_filter( 'excerpt_length', 'main_exercpt_length', 999 );
+                
                 if ( have_posts() ) : 
                     query_posts('category_name=culture');?>
 			<?php /* The loop */ ?>
 			<?php 
                         $i= 0;
-                        while ( have_posts() ) : the_post(); $i++; 
-                            if ($i==1) {?>
+                        while ( have_posts() && $i <= 3 ) : the_post(); $i++; 
+                            if ($i==1) {
+                                add_filter( 'excerpt_length', 'main_exercpt_length', 999 );?>
                             <div>
                                 <a href="<?php echo get_permalink(); ?>"><h2><?php the_title();?></h2></a>  <span class="author"><?php the_author_link();?> </span>
                                                                 <span class="date"><?php  the_date( 'l, F j', '/', '', TRUE); ?></span>
@@ -79,7 +80,7 @@ get_header(); ?>
 			<?php /* The loop */ ?>
 			<?php 
                         $i= 0;
-                        while ( have_posts() ) : the_post(); $i++; 
+                        while ( have_posts() && $i <= 3 ) : the_post(); $i++; 
                             if ($i==1) {?>
                             <div>
                                 <a href="<?php echo get_permalink(); ?>"><h2><?php the_title();?></h2></a>  <span class="author"><?php the_author_link();?> </span>
@@ -115,7 +116,11 @@ get_header(); ?>
                         </h3>
                           
                         <div id="avatar">
-                            <?php echo get_avatar( get_the_author_meta( 'ID' ), 55 ); ?>
+                            <?php if(userphoto_exists(get_the_author_meta( 'ID' ))){
+                                    userphoto_the_author_photo();
+                                  }else{
+                                    echo get_avatar( get_the_author_meta( 'ID' ), 55 );
+                                  }?>
                         </div>
                         
                         <div id="excerpt">
