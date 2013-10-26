@@ -1,45 +1,129 @@
 
-<div id ="wrap">
+
 <?php
 get_header(); ?>
 
-
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
-		<?php if ( have_posts() ) : 
-                    query_posts('cat=1');?>
-			<?php /* The loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-                        <h3><?php the_title();?></h3>
-                        <?php the_content();?>
-			<?php endwhile; ?>
-
-		
-
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
-
-        
-		</div><!-- #content -->
+	<section>
+            <div class="section">
                 <div id="content" class="site-content" role="main">
-		<?php if ( have_posts() ) : 
-                    query_posts('cat=2');?>
+                <div> 
+                    <div class="categorie">ÉCONOMIE</div>
+		<?php 
+                add_filter( 'excerpt_length', 'main_exercpt_length', 999 );
+                if ( have_posts() ) : 
+                    query_posts('category_name=travail');?>
 			<?php /* The loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-                        <h3><?php the_title();?></h3>
-                        <?php the_content();?>
-			<?php endwhile; ?>
-
-		
-
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
+			<?php 
+                        $i= 0;
+                        while ( have_posts() ) : the_post(); $i++; 
+                            if ($i==1) {?>
+                            <div><h2>
+                                    <a href="<?php echo get_permalink(); ?>"><?php the_title();?></h2></a>  <span class="author"><?php the_author_link();?> </span>
+                                <span class="date"><?php  the_date( 'l, F j', '/', '', TRUE); ?></span>
+                                <?php the_excerpt(); ?>
+                            </div>
+                            <?php
+                            }
+                            if ($i!=1){
+                            add_filter( 'excerpt_length', 'second_exercpt_length', 999 );?>
+                                <div class="sub-articles">
+                                    <a href="<?php echo get_permalink(); ?>"><h3><?php the_title();?></h3></a> <span class="author"> <?php the_author_link();?> </span>
+                                    <span class="date"><?php  the_date( 'l, F j', '/', '', TRUE); ?></span>
+                                    <?php the_excerpt(); ?>
+                                </div>
+                                <?php
+                            } 
+                            endwhile; ?>
 		<?php endif; ?>
 
         
-		</div><!-- #content -->
-	</div><!-- #primary -->
+		</div>
+                <div> 
+                    <div class="categorie">CULTURE</div>
+		<?php 
+                add_filter( 'excerpt_length', 'main_exercpt_length', 999 );
+                if ( have_posts() ) : 
+                    query_posts('category_name=culture');?>
+			<?php /* The loop */ ?>
+			<?php 
+                        $i= 0;
+                        while ( have_posts() ) : the_post(); $i++; 
+                            if ($i==1) {?>
+                            <div>
+                                <a href="<?php echo get_permalink(); ?>"><h2><?php the_title();?></h2></a>  <span class="author"><?php the_author_link();?> </span>
+                                                                <span class="date"><?php  the_date( 'l, F j', '/', '', TRUE); ?></span>
+                                <?php the_excerpt(); ?>
+                            </div>
+                            <?php
+                            }
+                            if ($i!=1){
+                            add_filter( 'excerpt_length', 'second_exercpt_length', 999 );?>
+                                <div class="sub-articles">
+                                    <a href="<?php echo get_permalink(); ?>"><h3><?php the_title();?></h3></a> <span class="author"> <?php the_author_link();?> </span>
+                                    <span class="date"><?php  the_date( 'l, F j', '/', '', TRUE); ?></span>
+                                    <?php the_excerpt(); ?>
+                                </div>
+                                <?php
+                            } 
+                            endwhile; ?>
+		<?php endif; ?>
+
+        
+		</div>
+<div> 
+                    <div class="categorie">MILIEUX DE VIE</div>
+		<?php 
+                add_filter( 'excerpt_length', 'main_exercpt_length', 999 );
+                if ( have_posts() ) : 
+                    query_posts('category_name=milieux-de-vie');?>
+			<?php /* The loop */ ?>
+			<?php 
+                        $i= 0;
+                        while ( have_posts() ) : the_post(); $i++; 
+                            if ($i==1) {?>
+                            <div>
+                                <a href="<?php echo get_permalink(); ?>"><h2><?php the_title();?></h2></a>  <span class="author"><?php the_author_link();?> </span>
+                                <span class="date"><?php  the_date( 'l, F j', '/', '', TRUE); ?></span>
+                                <?php the_excerpt(); ?>
+                            </div>
+                            <?php
+                            }
+                            if ($i!=1){
+                            add_filter( 'excerpt_length', 'second_exercpt_length', 999 );?>
+                                <div class="sub-articles">
+                                    <a href="<?php echo get_permalink(); ?>"><h3><?php the_title();?></h3></a> <span class="author"> <?php the_author_link();?> </span>
+                                    <span class="date"><?php  the_date( 'l, F j', '/', '', TRUE); ?></span>
+                                    <?php the_excerpt(); ?>
+                                </div>
+                                <?php
+                            } 
+                            endwhile; ?>
+		<?php endif; ?>
+
+        
+		</div>
+                </div><!-- #content -->
+                <div id="content-mid"> 
+                    <div class="categorie"> OPINION </div>                  
+                        <?php 
+                        add_filter( 'excerpt_length', 'opinion_excerpt_length', 999 );
+                        query_posts('category_name=opinion');?> 
+                            <?php /* The loop */ ?>
+                            <?php while ( have_posts() ) : the_post(); ?>
+                        <h3 id="content-mid-title">
+                            <a href="<?php echo get_permalink(); ?>"><?php the_title();?></a> <span class="opinion-author"> <?php the_author_link();?> </span>
+                        </h3>
+                          
+                        <div id="avatar">
+                            <?php echo get_avatar( get_the_author_meta( 'ID' ), 55 ); ?>
+                        </div>
+                        
+                        <div id="excerpt">
+                        <?php the_excerpt();?>
+                        </div>
+			<?php endwhile; ?>
+            </div>
+        </div>
+	</section><!-- #primary -->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
-</div>
