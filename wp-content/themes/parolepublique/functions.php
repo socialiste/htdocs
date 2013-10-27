@@ -6,7 +6,7 @@
             return 250;
     }
         function second_exercpt_length( $length ) {
-            return 35;
+            return 40;
     }
     
     
