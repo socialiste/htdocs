@@ -17,7 +17,7 @@ get_header(); ?>
                         $i= 0;
                         while ( have_posts() && $i <= 3) : the_post(); $i++; 
                             if ($i==1) {?>
-                            <div><h2>
+                            <div class="articles"><h2>
                                     <a href="<?php echo get_permalink(); ?>"><?php the_title();?></h2></a>  <span class="author"><?php the_author_link();?> </span>
                                 <span class="date"><?php  the_date( 'l, F j', '/', '', TRUE); ?></span>
                                 <?php the_excerpt(); ?>
@@ -106,7 +106,8 @@ get_header(); ?>
 		</div>
                 </div><!-- #content -->
                 <div id="content-mid"> 
-                    <div class="categorie"> OPINION </div>                  
+                    <div class="categorie"> OPINION </div>
+                                   
                         <?php 
                         add_filter( 'excerpt_length', 'opinion_excerpt_length', 7 );
                         query_posts('category_name=opinion');?> 
@@ -124,9 +125,10 @@ get_header(); ?>
                                   }?>
                         </div>
                         
-                        <div id="excerpt">
+                        <div class="excerpt">
                         <?php the_excerpt();?>
                         </div>
+
 			<?php endwhile; ?>
             </div>
         </div>

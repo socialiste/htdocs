@@ -57,8 +57,16 @@ Contenu principal
     float : left;
     width: 65%;
     box-shadow: 2px 2px 0px grey;
+    
 }
-
+.articles {
+    line-height: 130%;
+    font-size: 110%;
+}
+.sub-articles {
+    line-height: 130%;
+    font-size : 105%; 
+}
 #sidebar {
     border : black 1px solid;
     float : right;
@@ -94,7 +102,7 @@ Contenu principal
 }
 .read-more {
     font-size : 80%;
-    color : darkgray;
+    color : #595959;
 }
 .date {
     color : darkgrey;
@@ -135,8 +143,10 @@ Contenu principal
     margin : 1px;
 }
 
-#excerpt    {
+.excerpt    {
     clear : both;
+    line-height: 130%;
+    font-size: 110%;
 }
 .opinion-author {
     font: normal 70% Georgia, "Times New Roman", Times, serif;
